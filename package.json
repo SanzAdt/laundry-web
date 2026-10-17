@@ -1,0 +1,12 @@
+{
+  "name": "laundry-pos",
+  "version": "1.0.0",
+  "description": "Laundry POS & WhatsApp Automated Notifier MVP",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["laundry", "pos", "whatsapp", "mvp"],
+  "author": "",
+  "license": "MIT"
+}
