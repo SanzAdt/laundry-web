@@ -289,15 +289,22 @@ function switchTab(tabName) {
   ['orders', 'customers', 'expenses', 'tracking'].forEach(tab => {
     const elView = document.getElementById(`view-${tab}`);
     const elBtn = document.getElementById(`nav-btn-${tab}`);
+    const mobBtn = document.getElementById(`mob-nav-btn-${tab}`);
     if (tab === tabName) {
       if (elView) elView.classList.remove('hidden');
       if (elBtn) {
         elBtn.className = 'nav-tab px-3.5 py-1.5 rounded-lg font-semibold bg-white text-slate-900 shadow-xs transition';
       }
+      if (mobBtn) {
+        mobBtn.className = 'shrink-0 px-3 py-1.5 rounded-lg font-bold text-slate-900 bg-slate-100 shadow-xs transition';
+      }
     } else {
       if (elView) elView.classList.add('hidden');
       if (elBtn) {
         elBtn.className = 'nav-tab px-3.5 py-1.5 rounded-lg font-medium text-slate-500 hover:text-slate-900 transition';
+      }
+      if (mobBtn) {
+        mobBtn.className = 'shrink-0 px-3 py-1.5 rounded-lg font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition';
       }
     }
   });
@@ -403,15 +410,15 @@ function renderOrders() {
     `).join('');
 
     return `
-      <div class="bg-white rounded-2xl border ${isReady ? 'border-emerald-300/80 ring-2 ring-emerald-100/60' : 'border-slate-200/70'} p-5 sm:p-6 shadow-xs card-hover">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3.5 mb-4">
-          <div class="flex items-center space-x-2.5">
+      <div class="bg-white rounded-2xl border ${isReady ? 'border-emerald-300/80 ring-2 ring-emerald-100/60' : 'border-slate-200/70'} p-4 sm:p-6 shadow-xs card-hover">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3 mb-3.5 sm:mb-4">
+          <div class="flex items-center space-x-2">
             <span class="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60">#${order.id}</span>
-            <span class="text-xs text-slate-400 font-medium">${formatDate(order.createdAt)}</span>
+            <span class="text-[11px] sm:text-xs text-slate-400 font-medium">${formatDate(order.createdAt)}</span>
           </div>
 
           <div class="flex items-center space-x-2">
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold ${statusCfg.bg} ${statusCfg.text} border ${statusCfg.border}">
+            <div class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1 rounded-full text-xs font-semibold ${statusCfg.bg} ${statusCfg.text} border ${statusCfg.border}">
               <span class="w-1.5 h-1.5 rounded-full ${statusCfg.dot}"></span>
               <select onchange="updateOrderStatus('${order.id}', this.value)" class="bg-transparent border-none text-xs font-semibold cursor-pointer focus:ring-0 py-0 pl-0 pr-4">
                 <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Baru Masuk</option>
@@ -424,9 +431,9 @@ function renderOrders() {
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 mb-4">
           <div>
-            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Pelanggan</p>
+            <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-400">Pelanggan</p>
             <p class="font-bold text-slate-900 text-sm mt-0.5">${order.customerName}</p>
             <div class="mt-1.5 flex items-center gap-1.5">
               <a href="https://wa.me/${formatPhoneWA(order.customerPhone)}" target="_blank" title="Chat langsung via WhatsApp" class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100/80 px-2.5 py-1 rounded-lg border border-emerald-200/80 transition">
@@ -437,52 +444,56 @@ function renderOrders() {
           </div>
 
           <div class="bg-slate-50/80 p-3 rounded-xl border border-slate-100">
-            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Rincian Layanan (${(order.items || []).length} Item)</p>
+            <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Rincian Layanan (${(order.items || []).length} Item)</p>
             <div class="space-y-1">
               ${itemsListHtml}
             </div>
             ${order.notes ? `<p class="text-[11px] text-slate-600 border-t border-slate-200/60 pt-1.5 mt-2 font-medium">Catatan: ${order.notes}</p>` : ''}
           </div>
 
-          <div class="md:text-right">
-            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Tagihan</p>
-            <p class="font-extrabold text-slate-900 text-lg mt-0.5 tabular-nums font-mono">${formatRupiah(order.total)}</p>
-            <div class="flex items-center md:justify-end gap-1.5 mt-2">
-              <button onclick="togglePaymentStatus('${order.id}')" title="Klik untuk mengubah status pembayaran Lunas / Belum Lunas" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold cursor-pointer transition shadow-2xs hover:scale-105 active:scale-95 ${order.isPaid ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200' : 'bg-rose-100 text-rose-800 border border-rose-300 hover:bg-rose-200'}">
-                <span class="w-2 h-2 rounded-full ${order.isPaid ? 'bg-emerald-600' : 'bg-rose-600'}"></span>
-                <span>${order.isPaid ? 'LUNAS' : 'BELUM LUNAS'}</span>
-                <span class="text-[10px] text-slate-500 font-normal underline decoration-dotted ml-0.5">(Klik ubah)</span>
-              </button>
-              <span class="text-xs text-slate-600 font-semibold bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200/60">${order.paymentMethod}</span>
+          <div class="flex flex-col justify-between md:text-right">
+            <div>
+              <p class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Tagihan</p>
+              <p class="font-extrabold text-slate-900 text-lg mt-0.5 tabular-nums font-mono">${formatRupiah(order.total)}</p>
             </div>
-            <p class="text-[11px] text-slate-400 mt-1.5">Estimasi: <span class="font-medium text-slate-600">${formatDate(order.estimatedDate)}</span></p>
+            <div class="mt-2">
+              <div class="flex flex-wrap items-center md:justify-end gap-1.5">
+                <button onclick="togglePaymentStatus('${order.id}')" title="Klik untuk mengubah status pembayaran Lunas / Belum Lunas" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold cursor-pointer transition shadow-2xs hover:scale-105 active:scale-95 ${order.isPaid ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200' : 'bg-rose-100 text-rose-800 border border-rose-300 hover:bg-rose-200'}">
+                  <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${order.isPaid ? 'bg-emerald-600' : 'bg-rose-600'}"></span>
+                  <span>${order.isPaid ? 'LUNAS' : 'BELUM LUNAS'}</span>
+                  <span class="text-[9px] sm:text-[10px] text-slate-500 font-normal underline decoration-dotted ml-0.5">(Klik ubah)</span>
+                </button>
+                <span class="text-xs text-slate-600 font-semibold bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200/60">${order.paymentMethod}</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1.5">Estimasi: <span class="font-medium text-slate-600">${formatDate(order.estimatedDate)}</span></p>
+            </div>
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between pt-3.5 border-t border-slate-100 gap-2">
-          <div class="flex flex-wrap items-center gap-2">
-            <button onclick="sendInvoiceWA('${order.id}')" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xs transition active:scale-98">
-              <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <div class="flex flex-wrap items-center justify-between pt-3 border-t border-slate-100 gap-2">
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
+            <button onclick="sendInvoiceWA('${order.id}')" class="inline-flex items-center gap-1.5 sm:gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-xs transition active:scale-98">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
               <span>Kirim Nota WA</span>
             </button>
 
-            <button onclick="openEditOrderModal('${order.id}')" title="Edit Transaksi, Rincian Layanan & Tarif" class="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 text-xs font-semibold px-3.5 py-2.5 rounded-xl border border-slate-200/80 bg-white hover:bg-slate-50 transition shadow-2xs active:scale-98">
-              <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path></svg>
+            <button onclick="openEditOrderModal('${order.id}')" title="Edit Transaksi, Rincian Layanan & Tarif" class="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 text-xs font-semibold px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-slate-200/80 bg-white hover:bg-slate-50 transition shadow-2xs active:scale-98">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path></svg>
               <span>Edit Nota</span>
             </button>
 
-            <button onclick="sendReadyWA('${order.id}')" class="inline-flex items-center gap-1.5 ${isReady ? 'bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'} text-xs px-3.5 py-2.5 rounded-xl transition active:scale-98">
+            <button onclick="sendReadyWA('${order.id}')" class="inline-flex items-center gap-1.5 ${isReady ? 'bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow-xs' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium'} text-xs px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl transition active:scale-98">
               <svg class="w-3.5 h-3.5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path></svg>
               <span>Notifikasi Selesai</span>
             </button>
 
-            <button onclick="openLiveTracking('${order.id}')" class="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 text-xs font-semibold px-3 py-2.5 rounded-xl border border-slate-200/80 bg-white hover:bg-slate-50 transition shadow-2xs">
+            <button onclick="openLiveTracking('${order.id}')" class="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 text-xs font-semibold px-2.5 py-2 sm:px-3 sm:py-2.5 rounded-xl border border-slate-200/80 bg-white hover:bg-slate-50 transition shadow-2xs">
               <svg class="w-3.5 h-3.5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path></svg>
               <span>Lacak Publik</span>
             </button>
           </div>
 
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1 ml-auto sm:ml-0 shrink-0">
             <button onclick="printReceipt('${order.id}')" title="Cetak Struk Thermal" class="p-2 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition">
               <svg class="w-4 h-4 stroke-[1.75]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24-1.077.538-2.079 1.64-2.079h7.28c1.102 0 1.88 1.002 1.64 2.079l-.544 2.45A1.5 1.5 0 0115.27 17.5H8.73a1.5 1.5 0 01-1.465-1.221l-.545-2.45zM6 8.25h12M6 8.25A2.25 2.25 0 003.75 10.5v4.5A2.25 2.25 0 006 17.25h.75v-1.5H6a.75.75 0 01-.75-.75v-4.5a.75.75 0 01.75-.75h12a.75.75 0 01.75.75v4.5a.75.75 0 01-.75.75h-.75v1.5H18a2.25 2.25 0 002.25-2.25v-4.5A2.25 2.25 0 0018 8.25m-12 0V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v2.25"></path></svg>
             </button>
@@ -529,14 +540,14 @@ function renderCustomers() {
 
   container.innerHTML = list.map((c, idx) => `
     <tr class="border-b border-slate-100 hover:bg-slate-50/60 transition text-xs">
-      <td class="py-3 px-4 font-medium text-slate-400 font-mono">${idx + 1}</td>
-      <td class="py-3 px-4 font-bold text-slate-800">${c.name}</td>
-      <td class="py-3 px-4 text-slate-600 font-mono">${c.phone || '-'}</td>
-      <td class="py-3 px-4 font-semibold text-slate-700">${c.totalOrders} Transaksi</td>
-      <td class="py-3 px-4 font-bold text-slate-900">${formatRupiah(c.totalSpent)}</td>
-      <td class="py-3 px-4 text-slate-400">${formatDate(c.lastOrder)}</td>
-      <td class="py-3 px-4 text-right">
-        <button onclick="openWhatsApp('${c.phone}', 'Halo Kak ${c.name}, terima kasih telah menjadi pelanggan setia ${state.settings.storeName}. Ada yang bisa kami bantu hari ini?')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-800 font-semibold border border-emerald-200/60 transition">
+      <td class="py-3 px-3 sm:px-4 font-medium text-slate-400 font-mono whitespace-nowrap">${idx + 1}</td>
+      <td class="py-3 px-3 sm:px-4 font-bold text-slate-800 whitespace-nowrap">${c.name}</td>
+      <td class="py-3 px-3 sm:px-4 text-slate-600 font-mono whitespace-nowrap">${c.phone || '-'}</td>
+      <td class="py-3 px-3 sm:px-4 font-semibold text-slate-700 whitespace-nowrap">${c.totalOrders} Transaksi</td>
+      <td class="py-3 px-3 sm:px-4 font-bold text-slate-900 whitespace-nowrap">${formatRupiah(c.totalSpent)}</td>
+      <td class="py-3 px-3 sm:px-4 text-slate-400 whitespace-nowrap">${formatDate(c.lastOrder)}</td>
+      <td class="py-3 px-3 sm:px-4 text-right whitespace-nowrap">
+        <button onclick="openWhatsApp('${c.phone}', 'Halo Kak ${c.name}, terima kasih telah menjadi pelanggan setia ${state.settings.storeName}. Ada yang bisa kami bantu hari ini?')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 hover:text-emerald-800 font-semibold border border-emerald-200/60 transition active:scale-95">
           <svg class="w-3.5 h-3.5 fill-current shrink-0 text-emerald-600" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           <span>Chat WA</span>
         </button>
@@ -562,7 +573,7 @@ function renderExpenses() {
   const netProfitEl = document.getElementById('stat-net-profit');
   if (netProfitEl) {
     netProfitEl.textContent = formatRupiah(netProfit);
-    netProfitEl.className = `text-2xl font-extrabold mt-1 tabular-nums tracking-tight ${netProfit >= 0 ? 'text-emerald-700' : 'text-rose-700'}`;
+    netProfitEl.className = `text-xl sm:text-2xl font-extrabold mt-1 tabular-nums tracking-tight truncate ${netProfit >= 0 ? 'text-emerald-700' : 'text-rose-700'}`;
   }
 
   if (state.expenses.length === 0) {
@@ -571,17 +582,17 @@ function renderExpenses() {
   }
 
   container.innerHTML = state.expenses.map(exp => `
-    <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 flex items-center justify-between text-xs">
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="font-bold text-slate-800 text-sm">${exp.description}</span>
-          <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium text-[11px]">${exp.category}</span>
+    <div class="bg-white p-3 sm:p-3.5 rounded-xl border border-slate-200/80 flex items-center justify-between text-xs gap-2">
+      <div class="min-w-0 flex-1">
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          <span class="font-bold text-slate-800 text-xs sm:text-sm truncate">${exp.description}</span>
+          <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium text-[10px] sm:text-[11px] shrink-0">${exp.category}</span>
         </div>
         <p class="text-[11px] text-slate-400 mt-0.5">${formatDate(exp.date)}</p>
       </div>
-      <div class="flex items-center gap-3">
-        <span class="font-bold text-slate-900 text-sm font-mono">${formatRupiah(exp.amount)}</span>
-        <button onclick="deleteExpense('${exp.id}')" title="Hapus Pengeluaran" class="text-slate-400 hover:text-rose-600 p-1 rounded">
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <span class="font-bold text-slate-900 text-xs sm:text-sm font-mono whitespace-nowrap">${formatRupiah(exp.amount)}</span>
+        <button onclick="deleteExpense('${exp.id}')" title="Hapus Pengeluaran" class="text-slate-400 hover:text-rose-600 p-1.5 rounded hover:bg-rose-50 transition active:scale-95">
           <svg class="w-4 h-4 stroke-[1.75]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
@@ -783,25 +794,41 @@ function renderFormItems() {
     `).join('');
 
     return `
-      <div class="grid grid-cols-12 gap-2 items-center p-2 rounded-xl bg-slate-50/80 border border-slate-200/80 transition hover:border-slate-300">
-        <div class="col-span-5">
-          <select onchange="updateFormItem(${idx}, 'serviceId', this.value)" class="w-full text-xs py-2 px-2.5 border border-slate-200 rounded-lg bg-white font-medium focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none transition">
-            ${serviceOptions}
-          </select>
-        </div>
-        <div class="col-span-2">
-          <input type="number" step="0.1" min="0.1" value="${item.qty || ''}" placeholder="1" oninput="updateFormItem(${idx}, 'qty', this.value)" class="w-full text-xs py-2 px-1 border border-slate-200 rounded-lg bg-white font-mono font-bold text-center focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none transition">
-        </div>
-        <div class="col-span-2">
-          <input type="number" step="500" min="0" value="${item.price > 0 ? item.price : ''}" placeholder="0" oninput="updateFormItem(${idx}, 'price', this.value)" class="w-full text-xs py-2 px-2 border border-slate-200 rounded-lg bg-white font-mono text-right focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none transition">
-        </div>
-        <div id="form-item-subtotal-${idx}" class="col-span-2 text-right font-mono font-bold text-xs text-slate-900 tabular-nums">
-          ${formatRupiah(item.subtotal)}
-        </div>
-        <div class="col-span-1 text-center">
-          <button type="button" onclick="removeFormItemRow(${idx})" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition" title="Hapus Baris">
+      <div class="p-2.5 sm:p-2 rounded-xl bg-slate-50/90 sm:bg-slate-50/80 border border-slate-200/80 transition hover:border-slate-300 space-y-2 sm:space-y-0 sm:grid sm:grid-cols-12 sm:gap-2 sm:items-center">
+        <!-- Service Select: full-width on mobile with delete button / col-span-5 on desktop -->
+        <div class="flex items-center gap-1.5 sm:block sm:col-span-5">
+          <div class="flex-1 min-w-0">
+            <span class="block sm:hidden text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Jenis Layanan</span>
+            <select onchange="updateFormItem(${idx}, 'serviceId', this.value)" class="w-full text-xs py-2 px-2.5 border border-slate-200 rounded-lg bg-white font-medium focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none transition">
+              ${serviceOptions}
+            </select>
+          </div>
+          <button type="button" onclick="removeFormItemRow(${idx})" class="sm:hidden p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition mt-4 shrink-0 active:scale-95" title="Hapus Baris">
             <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
+        </div>
+
+        <!-- 3-column inputs on mobile / contents mapped to desktop 12-column grid -->
+        <div class="grid grid-cols-3 gap-2 items-center sm:contents">
+          <div class="sm:col-span-2">
+            <span class="block sm:hidden text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Qty (${item.unit})</span>
+            <input type="number" step="0.1" min="0.1" value="${item.qty || ''}" placeholder="1" oninput="updateFormItem(${idx}, 'qty', this.value)" class="w-full text-xs py-2 px-1 border border-slate-200 rounded-lg bg-white font-mono font-bold text-center focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none transition">
+          </div>
+          <div class="sm:col-span-2">
+            <span class="block sm:hidden text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Tarif (Rp)</span>
+            <input type="number" step="500" min="0" value="${item.price > 0 ? item.price : ''}" placeholder="0" oninput="updateFormItem(${idx}, 'price', this.value)" class="w-full text-xs py-2 px-2 border border-slate-200 rounded-lg bg-white font-mono text-right focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none transition">
+          </div>
+          <div class="sm:col-span-2 text-right">
+            <span class="block sm:hidden text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 text-right">Subtotal</span>
+            <div id="form-item-subtotal-${idx}" class="py-2 text-right font-mono font-bold text-xs text-slate-900 tabular-nums">
+              ${formatRupiah(item.subtotal)}
+            </div>
+          </div>
+          <div class="hidden sm:block sm:col-span-1 text-center">
+            <button type="button" onclick="removeFormItemRow(${idx})" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition active:scale-95" title="Hapus Baris">
+              <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
         </div>
       </div>
     `;

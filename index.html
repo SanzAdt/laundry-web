@@ -14,6 +14,9 @@
     tailwind.config = {
       theme: {
         extend: {
+          screens: {
+            xs: '420px',
+          },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
@@ -37,17 +40,17 @@
 
   <!-- Top Navigation Bar -->
   <header class="bg-white/85 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
       
       <!-- Brand & Outlet Name -->
-      <div class="flex items-center space-x-3">
-        <img src="logo.jpg" alt="LaundryFlow Logo" class="w-10 h-10 rounded-xl object-cover shadow-sm ring-1 ring-slate-900/10 shrink-0">
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 id="header-store-name" class="font-bold text-slate-900 text-sm sm:text-base leading-none tracking-tight">Berkah Laundry Express</h1>
-            <span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-1.5 py-0.5 rounded border border-slate-200/80 tracking-wide uppercase">Outlet Pro</span>
+      <div class="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
+        <img src="logo.jpg" alt="LaundryFlow Logo" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover shadow-sm ring-1 ring-slate-900/10 shrink-0">
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <h1 id="header-store-name" class="font-bold text-slate-900 text-xs sm:text-base leading-tight tracking-tight truncate max-w-[120px] xs:max-w-[190px] sm:max-w-none">Berkah Laundry Express</h1>
+            <span class="bg-slate-100 text-slate-600 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded border border-slate-200/80 tracking-wide uppercase shrink-0">Outlet Pro</span>
           </div>
-          <p id="header-tagline" class="text-[11px] text-slate-400 font-medium mt-1 truncate max-w-xs">Layanan Cuci & Setrika Profesional</p>
+          <p id="header-tagline" class="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate max-w-[140px] xs:max-w-xs">Layanan Cuci & Setrika Profesional</p>
         </div>
       </div>
 
@@ -60,23 +63,24 @@
       </nav>
 
       <!-- Right Header Actions -->
-      <div class="flex items-center space-x-2">
-        <button onclick="openSettingsModal()" class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-xl border border-transparent hover:border-slate-200 transition" title="Pengaturan Outlet">
+      <div class="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
+        <button onclick="openSettingsModal()" class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-xl border border-transparent hover:border-slate-200 transition shrink-0" title="Pengaturan Outlet">
           <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
         </button>
-        <button onclick="openNewOrderModal()" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2 rounded-xl transition active:scale-98 shadow-sm ring-1 ring-slate-900/10">
+        <button onclick="openNewOrderModal()" class="inline-flex items-center gap-1 sm:gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-2.5 py-2 sm:px-4 sm:py-2 rounded-xl transition active:scale-98 shadow-sm ring-1 ring-slate-900/10 shrink-0">
           <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg>
-          <span>Transaksi Baru</span>
+          <span class="hidden xs:inline">Transaksi Baru</span>
+          <span class="xs:hidden">Baru</span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Sub-Navigation -->
-    <div class="flex md:hidden overflow-x-auto px-4 py-2 border-t border-slate-100 gap-1 bg-white scrollbar-none text-xs">
-      <button onclick="switchTab('orders')" class="px-3 py-1.5 rounded-lg font-semibold text-slate-900 bg-slate-100">Transaksi</button>
-      <button onclick="switchTab('customers')" class="px-3 py-1.5 rounded-lg font-medium text-slate-500">Pelanggan</button>
-      <button onclick="switchTab('expenses')" class="px-3 py-1.5 rounded-lg font-medium text-slate-500">Buku Kas</button>
-      <button onclick="switchTab('tracking')" class="px-3 py-1.5 rounded-lg font-medium text-slate-500">Lacak</button>
+    <div class="flex md:hidden overflow-x-auto px-3 sm:px-4 py-2 border-t border-slate-100 gap-1 bg-white scrollbar-none text-xs touch-pan-x">
+      <button id="mob-nav-btn-orders" onclick="switchTab('orders')" class="shrink-0 px-3 py-1.5 rounded-lg font-bold text-slate-900 bg-slate-100 shadow-xs transition">Transaksi</button>
+      <button id="mob-nav-btn-customers" onclick="switchTab('customers')" class="shrink-0 px-3 py-1.5 rounded-lg font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition">Pelanggan</button>
+      <button id="mob-nav-btn-expenses" onclick="switchTab('expenses')" class="shrink-0 px-3 py-1.5 rounded-lg font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition">Buku Kas</button>
+      <button id="mob-nav-btn-tracking" onclick="switchTab('tracking')" class="shrink-0 px-3 py-1.5 rounded-lg font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition">Lacak</button>
     </div>
   </header>
 
@@ -86,73 +90,74 @@
     <!-- ==================== TAB 1: TRANSAKSI & POS ==================== -->
     <div id="view-orders">
       <!-- Top Metrics Overview -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 mb-6">
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/70 shadow-xs card-hover flex items-center justify-between">
-          <div>
-            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Antrian Aktif</p>
-            <p id="stat-active-count" class="text-2xl font-extrabold text-slate-900 mt-1 tabular-nums tracking-tight">0</p>
-            <p class="text-[11px] text-slate-400 mt-0.5 font-medium">Dalam pengerjaan</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mb-5 sm:mb-6">
+        <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/70 shadow-xs card-hover flex items-center justify-between min-w-0">
+          <div class="min-w-0 pr-1">
+            <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate">Antrian Aktif</p>
+            <p id="stat-active-count" class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5 sm:mt-1 tabular-nums tracking-tight truncate">0</p>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 font-medium truncate">Dalam pengerjaan</p>
           </div>
-          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 flex items-center justify-center">
-            <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          </div>
-        </div>
-
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-emerald-200/80 shadow-xs card-hover flex items-center justify-between">
-          <div>
-            <p class="text-[11px] font-semibold text-emerald-800 uppercase tracking-wider">Siap Diambil</p>
-            <p id="stat-ready-count" class="text-2xl font-extrabold text-emerald-700 mt-1 tabular-nums tracking-tight">0</p>
-            <p class="text-[11px] text-emerald-600 mt-0.5 font-medium">Selesai di outlet</p>
-          </div>
-          <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center">
-            <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
         </div>
 
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/70 shadow-xs card-hover flex items-center justify-between">
-          <div>
-            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Volume Hari Ini</p>
-            <p id="stat-today-kg" class="text-2xl font-extrabold text-slate-900 mt-1 tabular-nums tracking-tight">0 Kg</p>
-            <p class="text-[11px] text-slate-400 mt-0.5 font-medium">Timbangan masuk</p>
+        <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-emerald-200/80 shadow-xs card-hover flex items-center justify-between min-w-0">
+          <div class="min-w-0 pr-1">
+            <p class="text-[10px] sm:text-[11px] font-semibold text-emerald-800 uppercase tracking-wider truncate">Siap Diambil</p>
+            <p id="stat-ready-count" class="text-xl sm:text-2xl font-extrabold text-emerald-700 mt-0.5 sm:mt-1 tabular-nums tracking-tight truncate">0</p>
+            <p class="text-[10px] sm:text-[11px] text-emerald-600 mt-0.5 font-medium truncate">Selesai di outlet</p>
           </div>
-          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 flex items-center justify-center">
-            <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"></path></svg>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           </div>
         </div>
 
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/70 shadow-xs card-hover flex items-center justify-between">
-          <div>
-            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Pendapatan Hari Ini</p>
-            <p id="stat-today-omzet" class="text-2xl font-extrabold text-slate-900 mt-1 tabular-nums tracking-tight">Rp 0</p>
-            <p class="text-[11px] text-slate-400 mt-0.5 font-medium">Khusus tagihan lunas</p>
+        <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/70 shadow-xs card-hover flex items-center justify-between min-w-0">
+          <div class="min-w-0 pr-1">
+            <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate">Volume Hari Ini</p>
+            <p id="stat-today-kg" class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5 sm:mt-1 tabular-nums tracking-tight truncate">0 Kg</p>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 font-medium truncate">Timbangan masuk</p>
           </div>
-          <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 flex items-center justify-center">
-            <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"></path></svg>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"></path></svg>
+          </div>
+        </div>
+
+        <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/70 shadow-xs card-hover flex items-center justify-between min-w-0">
+          <div class="min-w-0 pr-1">
+            <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate">Pendapatan Hari Ini</p>
+            <p id="stat-today-omzet" class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5 sm:mt-1 tabular-nums tracking-tight truncate">Rp 0</p>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 font-medium truncate">Khusus tagihan lunas</p>
+          </div>
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"></path></svg>
           </div>
         </div>
       </div>
 
       <!-- Filter & Search Toolbar -->
-      <div class="bg-white p-3 sm:p-4 rounded-2xl border border-slate-200/70 shadow-xs mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <div class="flex items-center overflow-x-auto pb-1 md:pb-0 gap-1.5 scrollbar-none">
-          <button onclick="setFilter('all')" data-filter="all" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white shadow-xs transition">Semua</button>
-          <button onclick="setFilter('pending')" data-filter="pending" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Baru Masuk</button>
-          <button onclick="setFilter('washing')" data-filter="washing" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Sedang Dicuci</button>
-          <button onclick="setFilter('ironing')" data-filter="ironing" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Sedang Disetrika</button>
-          <button onclick="setFilter('ready')" data-filter="ready" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Siap Diambil</button>
-          <button onclick="setFilter('completed')" data-filter="completed" class="filter-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Selesai</button>
+      <div class="bg-white p-3 sm:p-4 rounded-2xl border border-slate-200/70 shadow-xs mb-5 sm:mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <div class="flex items-center overflow-x-auto pb-1.5 md:pb-0 gap-1.5 scrollbar-none touch-pan-x">
+          <button onclick="setFilter('all')" data-filter="all" class="filter-tab shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white shadow-xs transition">Semua</button>
+          <button onclick="setFilter('pending')" data-filter="pending" class="filter-tab shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Baru Masuk</button>
+          <button onclick="setFilter('washing')" data-filter="washing" class="filter-tab shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Sedang Dicuci</button>
+          <button onclick="setFilter('ironing')" data-filter="ironing" class="filter-tab shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Sedang Disetrika</button>
+          <button onclick="setFilter('ready')" data-filter="ready" class="filter-tab shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Siap Diambil</button>
+          <button onclick="setFilter('completed')" data-filter="completed" class="filter-tab shrink-0 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">Selesai</button>
         </div>
 
         <div class="flex items-center gap-2">
-          <div class="relative w-full md:w-64">
+          <div class="relative flex-1 md:w-64">
             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
               <svg class="w-4 h-4 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path></svg>
             </div>
             <input type="text" id="search-input" placeholder="Cari nama, nota, no HP..." class="w-full pl-9 pr-3.5 py-2 bg-slate-50/70 border border-slate-200/80 rounded-xl text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 transition placeholder:text-slate-400 font-medium">
           </div>
-          <button onclick="exportCSV()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition shadow-xs" title="Ekspor data ke format Excel CSV">
+          <button onclick="exportCSV()" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition shadow-xs" title="Ekspor data ke format Excel CSV">
             <svg class="w-3.5 h-3.5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
-            <span>Ekspor CSV</span>
+            <span class="hidden xs:inline">Ekspor CSV</span>
+            <span class="xs:hidden">CSV</span>
           </button>
         </div>
       </div>
@@ -165,29 +170,29 @@
 
     <!-- ==================== TAB 2: PELANGGAN (CRM) ==================== -->
     <div id="view-customers" class="hidden">
-      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-6 mb-6">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-4 sm:p-6 mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3.5 mb-4 gap-2">
           <div>
-            <h2 class="text-base font-bold text-slate-900 tracking-tight">Direktori Pelanggan Outlet</h2>
+            <h2 class="text-sm sm:text-base font-bold text-slate-900 tracking-tight">Direktori Pelanggan Outlet</h2>
             <p class="text-xs text-slate-400 mt-0.5">Daftar pelanggan terdaftar, frekuensi kunjungan, dan akumulasi nilai belanja.</p>
           </div>
-          <div class="text-right">
+          <div class="text-left sm:text-right">
             <span class="text-xs text-slate-400 font-medium">Total Terdata:</span>
             <span id="crm-total-count" class="font-extrabold text-slate-900 ml-1 font-mono text-sm">0</span>
           </div>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
+        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+          <table class="w-full text-left border-collapse min-w-[620px]">
             <thead>
-              <tr class="border-b border-slate-200 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                <th class="py-3 px-4">#</th>
-                <th class="py-3 px-4">Nama Pelanggan</th>
-                <th class="py-3 px-4">No. WhatsApp</th>
-                <th class="py-3 px-4">Total Kunjungan</th>
-                <th class="py-3 px-4">Total Belanja (LTV)</th>
-                <th class="py-3 px-4">Transaksi Terakhir</th>
-                <th class="py-3 px-4 text-right">Aksi</th>
+              <tr class="border-b border-slate-200 text-[11px] font-semibold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+                <th class="py-3 px-3 sm:px-4">#</th>
+                <th class="py-3 px-3 sm:px-4">Nama Pelanggan</th>
+                <th class="py-3 px-3 sm:px-4">No. WhatsApp</th>
+                <th class="py-3 px-3 sm:px-4">Total Kunjungan</th>
+                <th class="py-3 px-3 sm:px-4">Total Belanja (LTV)</th>
+                <th class="py-3 px-3 sm:px-4">Transaksi Terakhir</th>
+                <th class="py-3 px-3 sm:px-4 text-right">Aksi</th>
               </tr>
             </thead>
             <tbody id="customers-container">
@@ -200,27 +205,27 @@
 
     <!-- ==================== TAB 3: BUKU KAS & PENGELUARAN ==================== -->
     <div id="view-expenses" class="hidden">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
-          <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Total Pendapatan (Omzet)</p>
-          <p id="stat-today-omzet-2" class="text-2xl font-extrabold text-slate-900 mt-1 tabular-nums tracking-tight">Rp 0</p>
-          <p class="text-[11px] text-slate-400 mt-0.5 font-medium">Akumulasi tagihan lunas</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+          <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate">Total Pendapatan (Omzet)</p>
+          <p id="stat-today-omzet-2" class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1 tabular-nums tracking-tight truncate">Rp 0</p>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 font-medium">Akumulasi tagihan lunas</p>
         </div>
-        <div class="bg-white p-5 rounded-2xl border border-rose-200/80 shadow-xs">
-          <p class="text-[11px] font-semibold text-rose-700 uppercase tracking-wider">Total Beban Operasional</p>
-          <p id="expense-total-display" class="text-2xl font-extrabold text-rose-700 mt-1 tabular-nums tracking-tight">Rp 0</p>
-          <p class="text-[11px] text-rose-600/80 mt-0.5 font-medium">Deterjen, listrik, plastik, dll</p>
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-rose-200/80 shadow-xs">
+          <p class="text-[10px] sm:text-[11px] font-semibold text-rose-700 uppercase tracking-wider truncate">Total Beban Operasional</p>
+          <p id="expense-total-display" class="text-xl sm:text-2xl font-extrabold text-rose-700 mt-1 tabular-nums tracking-tight truncate">Rp 0</p>
+          <p class="text-[10px] sm:text-[11px] text-rose-600/80 mt-0.5 font-medium">Deterjen, listrik, plastik, dll</p>
         </div>
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
-          <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Estimasi Laba Bersih</p>
-          <p id="stat-net-profit" class="text-2xl font-extrabold text-emerald-700 mt-1 tabular-nums tracking-tight">Rp 0</p>
-          <p class="text-[11px] text-slate-400 mt-0.5 font-medium">Pendapatan dikurangi pengeluaran</p>
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+          <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider truncate">Estimasi Laba Bersih</p>
+          <p id="stat-net-profit" class="text-xl sm:text-2xl font-extrabold text-emerald-700 mt-1 tabular-nums tracking-tight truncate">Rp 0</p>
+          <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 font-medium">Pendapatan dikurangi beban</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         <!-- Add Expense Form -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs">
           <h3 class="text-sm font-bold text-slate-900 mb-3 tracking-tight">Catat Biaya Pengeluaran</h3>
           <form id="expense-form" class="space-y-3.5">
             <div>
@@ -248,7 +253,7 @@
         </div>
 
         <!-- Expense List -->
-        <div class="md:col-span-2 space-y-2.5" id="expenses-container">
+        <div class="lg:col-span-2 space-y-2.5" id="expenses-container">
           <!-- Injected via JavaScript -->
         </div>
       </div>
@@ -256,28 +261,28 @@
 
     <!-- ==================== TAB 4: PORTAL PELACAKAN MANDIRI (PUBLIK) ==================== -->
     <div id="view-tracking" class="hidden">
-      <div class="max-w-2xl mx-auto py-6">
+      <div class="max-w-2xl mx-auto py-3 sm:py-6">
         
         <!-- Public Search Card -->
-        <div class="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-xs text-center mb-6">
-          <img src="logo.jpg" alt="LaundryFlow" class="w-16 h-16 rounded-2xl mx-auto mb-3.5 shadow-md object-cover ring-1 ring-slate-900/10">
-          <h2 class="text-lg font-bold text-slate-900 tracking-tight">Portal Lacak Status Cucian</h2>
+        <div class="bg-white p-5 sm:p-7 rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs text-center mb-5 sm:mb-6">
+          <img src="logo.jpg" alt="LaundryFlow" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl mx-auto mb-3 shadow-md object-cover ring-1 ring-slate-900/10">
+          <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">Portal Lacak Status Cucian</h2>
           <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">Masukkan nomor nota transaksi untuk memeriksa perkembangan pesanan Anda secara real-time.</p>
           
-          <div class="flex items-center gap-2 max-w-md mx-auto mt-5">
-            <input type="text" id="tracking-search-input" placeholder="Contoh: LND-1001" class="flex-1 px-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none font-mono transition">
-            <button onclick="executePublicTrack(document.getElementById('tracking-search-input').value)" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold rounded-xl transition shadow-xs">
+          <div class="flex items-center gap-2 max-w-md mx-auto mt-4 sm:mt-5">
+            <input type="text" id="tracking-search-input" placeholder="Contoh: LND-1001" class="flex-1 min-w-0 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 focus:outline-none font-mono transition">
+            <button onclick="executePublicTrack(document.getElementById('tracking-search-input').value)" class="shrink-0 px-4 sm:px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold rounded-xl transition shadow-xs active:scale-98">
               Lacak
             </button>
           </div>
         </div>
 
         <!-- Tracking Result Card -->
-        <div id="tracking-result-card" class="bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6 sm:p-7 hidden">
-          <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-4 mb-5 gap-2">
+        <div id="tracking-result-card" class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-xs p-4 sm:p-7 hidden">
+          <div class="flex flex-wrap items-center justify-between border-b border-slate-100 pb-3.5 mb-4 sm:mb-5 gap-2">
             <div>
               <span class="text-xs text-slate-400 font-medium">Nomor Nota:</span>
-              <p id="track-order-id" class="text-lg font-bold text-slate-900 font-mono">#LND-1001</p>
+              <p id="track-order-id" class="text-base sm:text-lg font-bold text-slate-900 font-mono">#LND-1001</p>
             </div>
             <div class="text-right">
               <span class="text-xs text-slate-400 font-medium">Tanggal Masuk:</span>
@@ -286,15 +291,15 @@
           </div>
 
           <!-- Stepper -->
-          <div class="bg-slate-50/70 rounded-2xl p-5 border border-slate-100 mb-6">
-            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-4">Status Pengerjaan Cucian</p>
-            <div id="track-steps-container" class="space-y-4">
+          <div class="bg-slate-50/70 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-slate-100 mb-5 sm:mb-6">
+            <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-3 sm:mb-4">Status Pengerjaan Cucian</p>
+            <div id="track-steps-container" class="space-y-3 sm:space-y-4">
               <!-- Stepper injected via JavaScript -->
             </div>
           </div>
 
           <!-- Summary Table -->
-          <div class="space-y-2 mb-6 text-xs">
+          <div class="space-y-2 mb-5 sm:mb-6 text-xs">
             <div class="flex justify-between">
               <span class="text-slate-400">Nama Pelanggan:</span>
               <span id="track-customer-name" class="font-bold text-slate-800">-</span>
@@ -313,15 +318,15 @@
             </div>
           </div>
 
-          <div class="border-t border-slate-100 pt-4 mb-6">
-            <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Rincian Cucian:</p>
+          <div class="border-t border-slate-100 pt-4 mb-5 sm:mb-6">
+            <p class="text-[10px] sm:text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Rincian Cucian:</p>
             <div id="track-items-list" class="space-y-1">
               <!-- Injected via JavaScript -->
             </div>
           </div>
 
-          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div>
+          <div class="bg-slate-50 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-center sm:text-left">
               <p id="track-outlet-name" class="font-bold text-xs text-slate-900">Berkah Laundry Express</p>
               <p id="track-outlet-address" class="text-[11px] text-slate-400">Jl. Merpati No. 12</p>
             </div>
@@ -332,7 +337,7 @@
           </div>
         </div>
 
-        <div id="tracking-notfound-card" class="bg-white rounded-3xl border border-slate-200/80 p-8 text-center hidden">
+        <div id="tracking-notfound-card" class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 p-6 sm:p-8 text-center hidden">
           <p class="font-bold text-slate-800 text-sm">Pesanan Tidak Ditemukan</p>
           <p class="text-xs text-slate-400 mt-1">Periksa kembali nomor nota yang Anda masukkan.</p>
         </div>
@@ -342,56 +347,56 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200/70 py-4 text-center text-xs text-slate-400">
+  <footer class="bg-white border-t border-slate-200/70 py-4 text-center text-xs text-slate-400 px-4">
     <p>LaundryFlow &copy; 2026 &bull; Sistem POS & Manajemen Transaksi Laundry</p>
   </footer>
 
   <!-- ==================== MODALS ==================== -->
 
   <!-- 1. Modal: Tambah Transaksi Baru (Clean Redesign) -->
-  <div id="new-order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 modal-backdrop hidden">
-    <div class="bg-white rounded-3xl max-w-xl w-full p-7 shadow-2xl max-h-[92vh] overflow-y-auto border border-slate-200/80">
+  <div id="new-order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/40 modal-backdrop hidden">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full p-4 sm:p-7 shadow-2xl max-h-[94vh] sm:max-h-[90vh] overflow-y-auto border border-slate-200/80">
       
       <!-- Modal Header -->
-      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3.5 mb-4 sm:mb-5">
         <div>
           <div class="flex items-center gap-2">
-            <h3 id="order-modal-title" class="text-base font-bold text-slate-900 tracking-tight">Catat Transaksi Laundry Baru</h3>
-            <span id="order-modal-badge" class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200/60 uppercase">Multi-Item</span>
+            <h3 id="order-modal-title" class="text-sm sm:text-base font-bold text-slate-900 tracking-tight">Catat Transaksi Laundry Baru</h3>
+            <span id="order-modal-badge" class="bg-slate-100 text-slate-600 text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200/60 uppercase">Multi-Item</span>
           </div>
-          <p id="order-modal-subtitle" class="text-xs text-slate-400 mt-0.5">Dukungan beberapa jenis layanan dalam satu nota transaksi.</p>
+          <p id="order-modal-subtitle" class="text-[11px] sm:text-xs text-slate-400 mt-0.5">Dukungan beberapa jenis layanan dalam satu nota transaksi.</p>
         </div>
         <button onclick="closeNewOrderModal()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-xl hover:bg-slate-100 transition">
           <svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
 
-      <form id="new-order-form" class="space-y-4">
+      <form id="new-order-form" class="space-y-3.5 sm:space-y-4">
         <input type="hidden" id="order-edit-id" value="">
         <!-- Customer Details -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Pelanggan *</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Pelanggan *</label>
             <input type="text" id="new-order-name" required placeholder="Nama lengkap atau panggilan" class="w-full text-xs px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 focus:outline-none transition font-medium">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nomor WhatsApp *</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor WhatsApp *</label>
             <input type="tel" id="new-order-phone" required placeholder="08xxxxxxxxxx" class="w-full text-xs px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 focus:outline-none font-mono transition">
           </div>
         </div>
 
         <!-- Dynamic Multi-Item Section -->
-        <div class="pt-2">
+        <div class="pt-1">
           <div class="flex items-center justify-between mb-2">
             <label class="block text-xs font-semibold text-slate-700">Daftar Layanan Cucian</label>
-            <button type="button" onclick="addFormItemRow()" class="text-xs text-slate-900 hover:text-slate-700 font-bold inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition">
+            <button type="button" onclick="addFormItemRow()" class="text-xs text-slate-900 hover:text-slate-700 font-bold inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition active:scale-95">
               <svg class="w-3.5 h-3.5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path></svg>
               <span>Tambah Baris</span>
             </button>
           </div>
           
-          <!-- Column Headers -->
-          <div class="grid grid-cols-12 gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-1">
+          <!-- Column Headers: visible on desktop, hidden on mobile for clean stacked/compact cards -->
+          <div class="hidden sm:grid grid-cols-12 gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2 mb-1">
             <span class="col-span-5">Jenis Layanan</span>
             <span class="col-span-2 text-center">Kuantitas</span>
             <span class="col-span-2 text-right">Tarif (Rp)</span>
@@ -405,18 +410,18 @@
         </div>
 
         <!-- Total Banner Card -->
-        <div class="bg-slate-900 text-white rounded-2xl p-4 flex items-center justify-between shadow-sm">
+        <div class="bg-slate-900 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex items-center justify-between shadow-sm">
           <div>
-            <span class="text-[11px] font-semibold text-slate-300 uppercase tracking-wider block">Total Tagihan Transaksi</span>
-            <span class="text-xs text-slate-400">Otomatis terhitung dari semua baris</span>
+            <span class="text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider block">Total Tagihan Transaksi</span>
+            <span class="text-[11px] sm:text-xs text-slate-400">Otomatis terhitung dari semua baris</span>
           </div>
-          <span id="new-order-total-preview" class="text-xl font-bold font-mono tracking-tight text-white">Rp 0</span>
+          <span id="new-order-total-preview" class="text-lg sm:text-xl font-bold font-mono tracking-tight text-white shrink-0 ml-2">Rp 0</span>
         </div>
 
         <!-- Payment & Estimates -->
-        <div class="grid grid-cols-2 gap-3.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Metode Pembayaran</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Metode Pembayaran</label>
             <select id="new-order-pay-method" class="w-full text-xs px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 focus:outline-none bg-white font-medium transition">
               <option value="Tunai">Tunai</option>
               <option value="QRIS">QRIS</option>
@@ -424,7 +429,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Estimasi Selesai</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Estimasi Selesai</label>
             <input type="datetime-local" id="new-order-est-date" class="w-full text-xs px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 focus:outline-none bg-white font-medium transition">
           </div>
         </div>
@@ -436,23 +441,23 @@
 
         <!-- Notes -->
         <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1.5">Catatan Tambahan (Opsional)</label>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Catatan Tambahan (Opsional)</label>
           <input type="text" id="new-order-notes" placeholder="Contoh: baju putih dipisah, parfum sakura..." class="w-full text-xs px-3.5 py-2.5 bg-slate-50/70 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 focus:outline-none transition">
         </div>
 
         <!-- WhatsApp Quick Send Option -->
-        <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-3.5 flex items-center space-x-3">
+        <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex items-center space-x-2.5 sm:space-x-3">
           <input type="checkbox" id="new-order-auto-wa" checked class="w-4 h-4 text-emerald-600 rounded border-emerald-300 focus:ring-emerald-500">
-          <label for="new-order-auto-wa" class="text-xs font-semibold text-emerald-950 cursor-pointer flex items-center gap-2.5">
-            <svg class="w-5 h-5 fill-current text-emerald-600 shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            <span>Buka WhatsApp otomatis untuk kirim nota ke pelanggan setelah disimpan</span>
+          <label for="new-order-auto-wa" class="text-xs font-semibold text-emerald-950 cursor-pointer flex items-center gap-2">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current text-emerald-600 shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>Buka WhatsApp otomatis untuk kirim nota setelah disimpan</span>
           </label>
         </div>
 
         <!-- Action Footer -->
-        <div class="flex items-center justify-end space-x-2.5 pt-3 border-t border-slate-100">
-          <button type="button" onclick="closeNewOrderModal()" class="px-4 py-2.5 text-xs font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition">Batal</button>
-          <button type="submit" class="px-5 py-2.5 text-xs font-bold bg-slate-900 hover:bg-black text-white rounded-xl shadow-sm transition active:scale-98">
+        <div class="flex items-center justify-end space-x-2 pt-3 border-t border-slate-100">
+          <button type="button" onclick="closeNewOrderModal()" class="px-3.5 sm:px-4 py-2.5 text-xs font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition">Batal</button>
+          <button type="submit" class="px-4 sm:px-5 py-2.5 text-xs font-bold bg-slate-900 hover:bg-black text-white rounded-xl shadow-sm transition active:scale-98">
             <span id="order-submit-btn-text">Simpan Transaksi</span>
           </button>
         </div>
@@ -461,8 +466,8 @@
   </div>
 
   <!-- 2. Modal: Pengaturan Outlet -->
-  <div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 modal-backdrop hidden">
-    <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl max-h-[90vh] overflow-y-auto border border-slate-200/80">
+  <div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/40 modal-backdrop hidden">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-md w-full p-4 sm:p-7 shadow-2xl max-h-[92vh] sm:max-h-[90vh] overflow-y-auto border border-slate-200/80">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3.5 mb-4">
         <div>
           <h3 class="text-sm font-bold text-slate-900 tracking-tight">Profil & Pengaturan Outlet</h3>
@@ -496,16 +501,16 @@
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end">
-          <button type="submit" class="px-5 py-2.5 text-xs font-bold bg-slate-900 hover:bg-black text-white rounded-xl transition">Simpan Pengaturan</button>
+          <button type="submit" class="px-5 py-2.5 text-xs font-bold bg-slate-900 hover:bg-black text-white rounded-xl transition active:scale-98">Simpan Pengaturan</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- 3. Modal: Cetak Struk (Thermal 58mm with QR Code) -->
-  <div id="thermal-receipt-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 modal-backdrop hidden">
-    <div class="bg-white rounded-3xl p-6 shadow-2xl max-w-sm w-full no-print border border-slate-200/80">
-      <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
+  <div id="thermal-receipt-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/40 modal-backdrop hidden">
+    <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl max-w-sm w-full no-print border border-slate-200/80 max-h-[95vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
         <h4 class="font-bold text-slate-900 text-xs tracking-tight">Pratinjau Struk Cetak</h4>
         <button onclick="closeReceiptModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-md">
           <svg class="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -566,7 +571,7 @@
       <!-- Action Buttons -->
       <div class="flex items-center justify-end gap-2 mt-4">
         <button onclick="closeReceiptModal()" class="px-3.5 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">Tutup</button>
-        <button onclick="window.print()" class="px-4 py-2 text-xs font-semibold bg-slate-900 hover:bg-black text-white rounded-xl flex items-center gap-1.5 transition shadow-sm">
+        <button onclick="window.print()" class="px-4 py-2 text-xs font-semibold bg-slate-900 hover:bg-black text-white rounded-xl flex items-center gap-1.5 transition shadow-sm active:scale-98">
           <svg class="w-3.5 h-3.5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24-1.077.538-2.079 1.64-2.079h7.28c1.102 0 1.88 1.002 1.64 2.079l-.544 2.45A1.5 1.5 0 0115.27 17.5H8.73a1.5 1.5 0 01-1.465-1.221l-.545-2.45zM6 8.25h12M6 8.25A2.25 2.25 0 003.75 10.5v4.5A2.25 2.25 0 006 17.25h.75v-1.5H6a.75.75 0 01-.75-.75v-4.5a.75.75 0 01.75-.75h12a.75.75 0 01.75.75v4.5a.75.75 0 01-.75.75h-.75v1.5H18a2.25 2.25 0 002.25-2.25v-4.5A2.25 2.25 0 0018 8.25m-12 0V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v2.25"></path></svg>
           <span>Cetak Struk</span>
         </button>

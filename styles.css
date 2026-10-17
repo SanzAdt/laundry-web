@@ -6,10 +6,17 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* Mobile & Touch enhancements */
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: #f8fafc;
   color: #0f172a;
+  touch-action: manipulation;
 }
 
 .font-mono {
@@ -19,6 +26,16 @@ body {
 /* Tabular numbers for price and math alignment */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Hide scrollbar utility for mobile pills & horizontal scrolling */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Custom sleek scrollbar */
